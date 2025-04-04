@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fleuriste Sophistiqué - Produse</title>
+    <script>
+       
+        function addToCart(productName, price) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({ name: productName, price: price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(productName + " a fost adăugat în coș.");
+        }
+    </script>
+</head>
+<body style="background-color: #fff0e8; color: #fff; font-family: Arial, sans-serif;">
+<header style="background-color: #872752; padding: 10px; display: flex; justify-content: space-between; align-items: center;">
+    <h1 style="color: white; margin: 0;">Fleuriste Sophistiqué</h1>
+    <nav>
+        <ul style="list-style-type: none; display: flex; gap: 20px; padding: 0; margin: 0;">
+            <li><a href="home.html" style="color: white; text-decoration: none;">Acasă</a></li>
+            <li><a href="produse.html" style="color: white; text-decoration: none;">Produse</a></li>
+            <li><a href="cosultau.html" style="color: white; text-decoration: none;">Coșul meu</a></li>
+            <li><a href="contact.html" style="color: white; text-decoration: none;">Contact</a></li>
+        </ul>
+    </nav>
+
+<!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" id="search-bar" placeholder="Căutare..." onkeyup="showSuggestions()">
+            <div id="suggestions-box" class="suggestions"></div>
+        </div>
+</header>
+
+<script>
+
+    function search() {
+        const query = document.getElementById('search-bar').value;
+        if (query) {
+            alert('Căutare: ' + query);
+        } else {
+            alert('Te rugăm să introduci un termen de căutare.');
+        }
+    }
+</script>
+
+	
+	  <main style="padding: 20px;">
+        <h2 style="text-align: center; color: #000000;">Cum ne poti contacta?</h2>
+		  <p style="color: black"> Adresa de email: Fleuriste.Sophistiqué@gmail.com </p>
+		  <p style="color: black"> Facebook: <a href="https://facebook.com/Rares Minzu" target="_blank" style="color: black; text-decoration: none;">
+		  <img src="facebook-logo.png" alt="Facebook" style="height: 20px;">
+		<p>Contul nostru: <a href="https://instagram.com/iamalex.06" target="_blank" style="color: black; text-decoration: none;"> 
+            <img src="instagram-logo.png" alt="Instagram" style="height: 20px;">
+		<p style="color: black"> Telefon: 0756 123 456  ; 0712 345 678 </p>
+		
+			
+		

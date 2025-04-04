@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fleuriste Sophistiqué - Produse</title>
+    <script>
+       
+        function addToCart(productName, price) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({ name: productName, price: price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(productName + " a fost adăugat în coș.");
+        }
+    </script>
+</head>
+<body style="background-color: #fff0e8; color: #fff; font-family: Arial, sans-serif;">
+
+    <!-- Header -->
+<header style="background-color: #872752; padding: 10px; display: flex; justify-content: space-between; align-items: center;">
+    <h1 style="color: white; margin: 0;">Fleuriste Sophistiqué</h1>
+    <nav>
+        <ul style="list-style-type: none; display: flex; gap: 20px; padding: 0; margin: 0;">
+            <li><a href="home.html" style="color: white; text-decoration: none;">Acasă</a></li>
+            <li><a href="produse.html" style="color: white; text-decoration: none;">Produse</a></li>
+            <li><a href="cosultau.html" style="color: white; text-decoration: none;">Coșul meu</a></li>
+            <li><a href="contact.html" style="color: white; text-decoration: none;">Contact</a></li>
+        </ul>
+    </nav>
+
+<!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" id="search-bar" placeholder="Căutare..." onkeyup="showSuggestions()">
+            <div id="suggestions-box" class="suggestions"></div>
+        </div>
+</header>
+
+<script>
+    // Functia de search (o funcție simplă de exemplu, poți adăuga logica dorită aici)
+    function search() {
+        const query = document.getElementById('search-bar').value;
+        if (query) {
+            alert('Căutare: ' + query);
+        } else {
+            alert('Te rugăm să introduci un termen de căutare.');
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <main style="padding: 20px;">
+        <h2 style="text-align: center; color: #000000;">Produse de top</h2>
+
+        <!-- Produse -->
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px;">
+            <!-- Trandafiri -->
+            <section style="width: 30%; text-align: center; background-color: #555; padding: 20px; border: 1px solid #ccc;">
+                <img src="trandafiriB.png" alt="Trandafiri" style="width: 100%; height: auto;">
+                <h3>Trandafiri</h3>
+                <p><strong>Descriere:</strong> Trandafirii sunt simbolul iubirii și frumuseții. Perfecti pentru orice ocazie specială.</p>
+                <p><strong>Preț:</strong><del>250</del>			199,90 RON</p>
+                <button onclick="addToCart('Trandafiri', 199,90)">Adaugă în coș</button>
+            </section>
+
+            <!-- Bujori -->
+            <section style="width: 30%; text-align: center; background-color: #555; padding: 20px; border: 1px solid #ccc;">
+                <img src="buhoriB (2).jpg" alt="Bujori" style="width: 100%; height: auto;">
+                <h3>Bujori</h3>
+                <p><strong>Descriere:</strong> Bujorii sunt flori delicate și parfumate, ideale pentru a adăuga un plus de eleganță oricărui aranjament.</p>
+                <p><strong>Preț:</strong> <del>240</del> 189,90 RON</p>
+                <button onclick="addToCart('Bujori', 189,90)">Adaugă în coș</button>
+            </section>
+
+            <!-- Lalele -->
+            <section style="width: 30%; text-align: center; background-color: #555; padding: 20px; border: 1px solid #ccc;">
+                <img src="lalele (1).jpg" alt="Lalele" style="width: 100%; height: auto;">
+                <h3>Lalele</h3>
+                <p><strong>Descriere:</strong> Lalelele sunt flori vibrante și colorate, care aduc un aer proaspăt și vesel în orice spațiu.</p>
+                <p><strong>Preț:</strong><del>160</del> 129,90 RON</p>
+                <button onclick="addToCart('Lalele', 129,90)">Adaugă în coș</button>
+            </section>
+        </div>
+		 <main style="padding: 20px;">
+        <h2 style="text-align: center; color: #000000;">Mai multe produse</h2>
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px;">
+            <!-- Crin -->
+            <section style="width: 30%; text-align: center; background-color: #555; padding: 20px; border: 1px solid #ccc;">
+                <img src="crin.jpg" alt="Crin" style="width: 100%; height: auto;">
+                <h3>Crin</h3>
+                <p><strong>Descriere:</strong> Crinii au fost mereu perfecti pentru orice ocazie specială.</p>
+                <p><strong>Preț:</strong> 25 RON</p>
+                <button onclick="addToCart('Crin', 25)">Adaugă în coș</button>
+            </section>
+
+            <!-- Hortensie -->
+            <section style="width: 30%; text-align: center; background-color: #555; padding: 20px; border: 1px solid #ccc;">
+                <img src="hortensie.jpg" alt="Hortensie" style="width: 100%; height: auto;">
+                <h3>Hortensie</h3>
+                <p><strong>Descriere:</strong> Hortensiile sunt flori delicate și parfumate, ideale pentru a adăuga un plus de eleganță oricărui aranjament.</p>
+                <p><strong>Preț:</strong> 90 RON</p>
+                <button onclick="addToCart('Hortensie', 90)">Adaugă în coș</button>
+            </section>
+
+            <!-- Garoafa -->
+            <section style="width: 30%; text-align: center; background-color: #555; padding: 20px; border: 1px solid #ccc;">
+                <img src="garoafa.jpg" alt="Garoafa" style="width: 100%; height: auto;">
+                <h3> Garoafa </h3>
+                <p><strong>Descriere:</strong> Garoafele sunt flori care aduc un aer proaspăt și vesel în orice spațiu.</p>
+                <p><strong>Preț:</strong> 30 RON</p>
+                <button onclick="addToCart('Garoafa', 30)">Adaugă în coș</button>
+            </section>
+        </div>
+		        <div style="display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px;">
+            <!-- Buchet-Frezie -->
+            <section style="width: 30%; text-align: center; background-color: #555; padding: 20px; border: 1px solid #ccc;">
+                <img src="buchet-frezii-albe.jpg" alt="Buchet-Frezie" style="width: 100%; height: auto;">
+                <h3>Buchet-Frezie</h3>
+                <p><strong>Descriere:</strong> Frezia a fost intodeanua o floare potrivita oricarei situatii.</p>
+                <p><strong>Preț:</strong> 65 RON</p>
+                <button onclick="addToCart('Buchet-Frezie', 65)">Adaugă în coș</button>
+            </section>
+
+            <!-- Orhidee -->
+            <section style="width: 30%; text-align: center; background-color: #555; padding: 20px; border: 1px solid #ccc;">
+                <img src="orhidee.jpg" alt="Orhidee" style="width: 100%; height: auto;">
+                <h3>Orhidee</h3>
+                <p><strong>Descriere:</strong> Orhideile sunt flori delicate și parfumate, ideale pentru a adăuga un plus de eleganță oricărui aranjament.</p>
+                <p><strong>Preț:</strong> 70 RON</p>
+                <button onclick="addToCart('Orhidee', 70)">Adaugă în coș</button>
+            </section>
+
+            <!-- Liliac Japonez -->
+            <section style="width: 30%; text-align: center; background-color: #555; padding: 20px; border: 1px solid #ccc;">
+                <img src="liliac.jpg" alt="Liliac Japonez" style="width: 100%; height: auto;">
+                <h3> Liliac Japonez </h3>
+                <p><strong>Descriere:</strong> Liliacul este o floare de o frumusete aparte.</p>
+                <p><strong>Preț:</strong> 120 RON</p>
+                <button onclick="addToCart('Liliac Japonez', 120)">Adaugă în coș</button>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer style="background-color: #000; color: white; padding: 20px; text-align: center;">
+        <p>Contactul nostru: <a href="https://instagram.com/m.rares_andrei" target="_blank" style="color: white; text-decoration: none;">
+            <img src="instagram-logo.png" alt="Instagram" style="height: 20px;">
+        </a></p>
+    </footer>
+
+</body>
+</html>

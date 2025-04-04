@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fleuriste Sophistiqué - Coșul meu</title>
+    <style>
+        body {
+            background-color: #808080;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #555; /* Fundal gri mediu-închis */
+            color: white;
+            border: 2px solid #777; /* Bordură ușor mai deschisă */
+        }
+        .delete-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .total {
+            background-color: #555; /* Fundal gri închis */
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border: 2px solid #777; /* Bordură la total */
+        }
+        .clear-btn {
+            background-color: red;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body onload="loadCart()">
+<body style="background-color: #fff0e8; color: #fff; font-family: Arial, sans-serif;">
+
+    <!-- Header -->
+<header style="background-color: #872752; padding: 10px; display: flex; justify-content: space-between; align-items: center;">
+    <h1 style="color: white; margin: 0;">Fleuriste Sophistiqué</h1>
+    <nav>
+        <ul style="list-style-type: none; display: flex; gap: 20px; padding: 0; margin: 0;">
+            <li><a href="home.html" style="color: white; text-decoration: none;">Acasă</a></li>
+            <li><a href="produse.html" style="color: white; text-decoration: none;">Produse</a></li>
+            <li><a href="cosultau.html" style="color: white; text-decoration: none;">Coșul meu</a></li>
+            <li><a href="contact.html" style="color: white; text-decoration: none;">Contact</a></li>
+        </ul>
+    </nav>
+
+<!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" id="search-bar" placeholder="Căutare..." onkeyup="showSuggestions()">
+            <div id="suggestions-box" class="suggestions"></div>
+        </div>
+</header>
+
+ <script>
+        const products = [
+            { name: "Trandafiri Roșii", price: 199.90 , image: "trandafiriB.png", page: "trandafiri.html" },
+            { name: "Lalele Galbene", price: 129.90, image: "lalele (1).jpg", page: "lalele.html" },
+            { name: "Garoafa", price: 30, image: "garoafa.png", page: "garoafa.html" }
+        ];
+
+        function showSuggestions() {
+            const query = document.getElementById('search-bar').value.toLowerCase();
+            const suggestionsBox = document.getElementById('suggestions-box');
+            suggestionsBox.innerHTML = '';
+            if (query.length > 0) {
+                const filteredProducts = products.filter(product => product.name.toLowerCase().includes(query));
+                if (filteredProducts.length > 0) {
+                    suggestionsBox.style.display = 'block';
+                } else {
+                    suggestionsBox.style.display = 'none';
+                }
+                filteredProducts.forEach(product => {
+                    const suggestionItem = document.createElement('div');
+                    suggestionItem.innerHTML = `
+                        <div style='background: #f0f0f0; border: 1px solid #ccc; padding: 5px; margin: 2px;'>
+                            <img src="${product.image}" alt="${product.name}" width="30" height="30">
+                            <span>${product.name} - ${product.price} RON</span>
+                        </div>
+                    `;
+                    suggestionItem.onclick = () => {
+                        window.location.href = product.page;
+                    };
+                    suggestionsBox.appendChild(suggestionItem);
+                });
+            } else {
+                suggestionsBox.style.display = 'none';
+            }
+        }
+
+        document.addEventListener('click', function(event) {
+            const suggestionsBox = document.getElementById('suggestions-box');
+            const searchBar = document.getElementById('search-bar');
+            if (!searchBar.contains(event.target)) {
+                suggestionsBox.style.display = 'none';
+            }
+        });
+    </script>
+
+
+    <!-- Main Content -->
+    <main style="padding: 20px;">
+        <h1 style="color: #000000;">Coșul meu</h1>
+
+        <div id="cart-items"></div>
+        
+        <button><a href="contact.html" style="background-color: #872752; color: white; padding: 10px 20px; border: none; cursor: pointer;">
+            Plasează comanda
+        </a></button>
+
+        <button class="clear-btn" onclick="clearCart()">Șterge toate produsele</button>
+    </main>
+
+    <!-- Footer -->
+    <footer style="background-color: #000; color: white; padding: 20px; text-align: center;">
+        <p>Contactul nostru: <a href="https://instagram.com/iamalex.06" target="_blank" style="color: white; text-decoration: none;">
+            <img src="instagram-logo.png" alt="Instagram" style="height: 20px;">
+        </a></p>
+    </footer>
+
+    <script>
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let cartContainer = document.getElementById('cart-items');
+            cartContainer.innerHTML = ""; 
+            let total = 0;
+
+            if (cart.length === 0) {
+                cartContainer.innerHTML = '<p style="color: black">Coșul tău este gol.</p>';
+            } else {
+                cart.forEach((item, index) => {
+                    let itemElement = document.createElement('div');
+                    itemElement.classList.add("cart-item");
+
+                    itemElement.innerHTML = `
+                        <p>${item.name} - ${item.price} RON</p>
+                        <button class="delete-btn" onclick="deleteItem(${index})">Șterge</button>
+                    `;
+                    cartContainer.appendChild(itemElement);
+                    total += item.price;
+                });
+
+                let totalElement = document.createElement('div');
+                totalElement.classList.add("total");
+                totalElement.innerHTML = `<h3>Total: ${total} RON</h3>`;
+                cartContainer.appendChild(totalElement);
+            }
+        }
+
+        function deleteItem(index) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        function clearCart() {
+            localStorage.removeItem('cart');
+            loadCart();
+        }
+    </script>
+
+</body>
+</html>

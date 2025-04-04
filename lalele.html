@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trandafiri - Fleuriste Sophistiqué</title>
+    <style>
+        body {
+            background-color: #fff0e8;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #872752;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            color: white;
+            margin: 0;
+            flex: 1;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            flex: 2;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 10px;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: auto; /* Puse bara de cautare in partea dreapta */
+        }
+
+        .search-container input {
+            padding: 10px;
+            font-size: 16px;
+            width: 300px;
+            margin-right: 10px;
+            border: 1px solid #872752;
+            border-radius: 5px;
+        }
+
+        .product-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            gap: 30px;
+            background-color: #555;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+
+        .product-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .product-image img {
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .product-details {
+            flex: 2;
+            color: #fff;
+        }
+
+        .product-details h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .product-details p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .product-details .price {
+            font-size: 26px;
+            color: #f0b;
+            margin-bottom: 20px;
+        }
+
+        .add-to-cart-btn {
+            background-color: #872752;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #a23e63;
+        }
+
+        footer {
+            background-color: #000;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Fleuriste Sophistiqué</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">Acasă</a></li>
+                <li><a href="produse.html">Produse</a></li>
+                <li><a href="cosultau.html">Coșul meu</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        
+<!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" id="search-bar" placeholder="Căutare..." onkeyup="showSuggestions()">
+            <div id="suggestions-box" class="suggestions"></div>
+        </div>
+    </header>
+
+    <!-- Product Page -->
+    <div class="product-page">
+        <!-- Product Image -->
+        <div class="product-image">
+            <img src="lalele (1).jpg" alt="Lalele">
+        </div>
+
+        <!-- Product Details -->
+        <div class="product-details">
+            <h2>Lalele</h2>
+            <p>Lalelele sunt flori vibrante și colorate, care aduc un aer proaspăt și vesel în orice spațiu.</p>
+            <p class="price"><del>160</del> 129,90 RON</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Trandafiri', 199.90)">Adaugă în coș</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Contactul nostru: <a href="https://instagram.com/m.rares_andrei" target="_blank">
+            <img src="instagram-logo.png" alt="Instagram" style="height: 20px;">
+        </a></p>
+    </footer>
+
+    <!-- Script pentru funcționalitatea de adăugare în coș și căutare -->
+    <script>
+        function addToCart(productName, productPrice) {
+            let product = {
+                name: productName,
+                price: productPrice
+            };
+
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push(product);
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        function search() {
+            const query = document.getElementById('search-bar').value;
+            if (query) {
+                alert('Căutare: ' + query);  
+            } else {
+                alert('Te rugăm să introduci un termen de căutare.');
+            }
+        }
+    </script>
+
+</body>
+</html>
